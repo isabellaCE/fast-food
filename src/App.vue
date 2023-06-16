@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Cardapio />
+    <!-- <Cardapio /> -->
+    <BackOffice />
   </div>
 </template>
 
 <script>
-import Cardapio from "./components/Cardapio.vue";
+// import Cardapio from "./components/Cardapio.vue";
+import BackOffice from "./components/BackOffice.vue";
 
 export default {
   name: "App",
   components: {
-    Cardapio,
+    // Cardapio,
+    BackOffice,
   },
 };
 </script>

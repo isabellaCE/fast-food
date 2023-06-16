@@ -3,13 +3,19 @@
     <section class="items">
       <h4>Selecione os produtos</h4>
 
-      <div v-for="produto in produtos" :key="produto.id" class="produto">
+      <div
+        v-for="produto in produtos"
+        :key="produto.id"
+        class="produto"
+        @click="toggleActive(produto)"
+        :class="{ selected: produto.active }"
+      >
         <div class="photo">
-          <img :src="produto.photo" />
+          <img :src="getImg(produto.photo)" />
         </div>
         <div class="description">
           <span class="name">{{ produto.name }}</span>
-          <span class="price">$ {{ produto.price }}</span>
+          <span class="price">R$ {{ produto.price }}</span>
           <div class="quantity-area">
             <template v-if="produto.active">
               <button
@@ -24,6 +30,31 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="summary" v-if="total() > 0">
+      <strong>Resumo do pedido</strong>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="produto in produtos" :key="produto.id">
+            <template v-if="produto.active">
+              <td>{{ produto.quantity + "x " + produto.name }}</td>
+              <td>{{ (produto.quantity * produto.price).toFixed(2) }}</td>
+            </template>
+          </tr>
+
+          <tr>
+            <th>Total</th>
+            <th>{{ total() }}</th>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </div>
 </template>
@@ -49,6 +80,21 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    getImg(img) {
+      return require("../img/" + img);
+    },
+    toggleActive(item) {
+      item.active = !item.active;
+    },
+    total() {
+      var total = 0;
+      this.produtos.forEach((item) => {
+        if (item.active) {
+          total += item.price * item.quantity;
+        }
+      });
+      return total.toFixed(2);
     },
   },
   created() {
