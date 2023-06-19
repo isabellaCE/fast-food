@@ -4,8 +4,6 @@ FAST FOOD
 
 ## Instalar as dependencias
 ```bash
-yarn
-# or
 npm install
 ```
 
@@ -17,4 +15,10 @@ npm run backend
 ### Em outro terminal, digite o comando abaixo para rodar o frontend
 ```bash
 npm run dev
+```
+
+### Caso o projeto nao rode, instale os seguintes frameworks e depois siga os passos acima novamente
+```bash
+npm install -g @vue/cli
+npm install -g @quasar/cli
 ```
