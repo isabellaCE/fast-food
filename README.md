@@ -2,35 +2,19 @@
 
 FAST FOOD
 
-## Install the dependencies
+## Instalar as dependencias
 ```bash
 yarn
 # or
 npm install
 ```
 
-### Start the backend
+### Iniciar o backend
 ```bash
 npm run backend
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Em outro terminal, digite o comando abaixo para rodar o frontend
 ```bash
-quasar dev
+npm run dev
 ```
-
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v1.quasar.dev/quasar-cli/quasar-conf-js).
