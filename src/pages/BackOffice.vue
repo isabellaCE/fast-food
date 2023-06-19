@@ -15,20 +15,22 @@
         <span class="price">R$ {{ produto.price }}</span>
         <div class="quantity-area">
           <Trash :handleClick="() => removeProduct(produto.id)" />
-          <Edit />
+          <Modal :produto="produto" @updateProductList="getProducts()" />
         </div>
       </div>
     </div>
+    <ModalAdicionar @updateProductList="getProducts()" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Edit from "../../public/icons/Edit.vue";
 import Trash from "../../public/icons/Trash.vue";
+import Modal from "src/components/Modal.vue";
+import ModalAdicionar from "src/components/ModalAdicionar.vue";
 
 export default {
-  components: { Edit, Trash },
+  components: { Trash, Modal, ModalAdicionar },
   name: "BackOffice",
   data() {
     return {
@@ -41,13 +43,15 @@ export default {
         .get("http://localhost:3000/Produtos")
         .then((res) => {
           this.produtos = res.data;
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);
         });
     },
     getImg(img) {
+      if (img.includes("https")) {
+        return img;
+      }
       return require("../../public/img/" + img);
     },
     toggleActive(item) {
@@ -65,13 +69,12 @@ export default {
     removeProduct(id) {
       axios
         .delete(`http://localhost:3000/Produtos/${id}`)
-        .then((res) => {
-          this.produtos = res.data;
+        .then(() => {
+          this.getProducts();
         })
         .catch((error) => {
           console.log(error);
         });
-      window.location.reload(true);
     },
   },
   created() {
@@ -107,7 +110,8 @@ h4 {
 }
 
 .photo img {
-  max-width: 90px;
+  width: 90px;
+  height: 90px;
 }
 
 .description {

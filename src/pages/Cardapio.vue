@@ -82,6 +82,9 @@ export default {
         });
     },
     getImg(img) {
+      if (img.includes("https")) {
+        return img;
+      }
       return require("../../public/img/" + img);
     },
     toggleActive(item) {
@@ -139,7 +142,9 @@ h4 {
 }
 
 .photo img {
-  max-width: 90px;
+  width: 90px;
+  height: 90px;
+  padding-top: 10px;
 }
 
 .description {

@@ -71,6 +71,14 @@
       "price": 1.49,
       "active": false,
       "quantity": 1
+    },
+    {
+      "id": 10,
+      "photo": "https://img.cybercook.com.br/receitas/565/receita-basica-de-cupcake-3-840x480.jpeg?q=75",
+      "name": "Cupcake",
+      "price": "5.99",
+      "active": false,
+      "quantity": 1
     }
   ]
 }

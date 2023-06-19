@@ -10,7 +10,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
-    "backend": "json-server --watch db/db.json"
+    "backend": "npx json-server --watch db/db.json"
   },
   "dependencies": {
     "axios": "^1.2.1",
